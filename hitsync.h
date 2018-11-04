@@ -13,5 +13,6 @@
 
 void *updateTimeDisplay();
 void syncTime();
+void signalHandle(int);
 
 #endif /* hitsync_h */
