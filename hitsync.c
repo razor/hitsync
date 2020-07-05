@@ -112,6 +112,8 @@ void *updateTimeDisplay() {
 void signalHandle(int sig) {
     displayTime = 0;
     usleep(1000);
+    printf("\n");
+    fflush(stdout);
     exit(1);
 }
 
