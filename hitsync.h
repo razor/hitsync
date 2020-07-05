@@ -8,11 +8,16 @@
 #ifndef hitsync_h
 #define hitsync_h
 
+typedef struct tm tm;
+
 #include <stdio.h>
 
 
 void *updateTimeDisplay();
 void syncTime();
 void signalHandle(int);
+void usage();
+void getSnapTime(tm *);
+int checkStringDigit(const char*);
 
 #endif /* hitsync_h */

@@ -1,7 +1,8 @@
 CC=gcc
+CFLAGS=-pthread
 
 hitsync: hitsync.c
-	$(CC) -o hitsync hitsync.c
+	$(CC) $(CFLAGS) -o hitsync hitsync.c
 	strip hitsync
 	chmod +x hitsync
 all: hitsync
