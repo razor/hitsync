@@ -24,6 +24,7 @@ int minset = 0;
 int main(int argc, char **argv) {
     
     char timeSetBuf[4];
+    int ret = 0;
 
     if (argc > 2) {
         goto USAGE;
@@ -51,7 +52,11 @@ int main(int argc, char **argv) {
     while (ch != '\n') {
         ch = getchar();
     }
-    syncTime();
+    ret = syncTime();
+    if (ret == -1) {
+        perror(NULL);
+        return -1;
+    }
     displayTime = 0;
     usleep(1000);
     printf("\rtime synced.                                                          \n");
@@ -69,14 +74,16 @@ int checkStringDigit(const char *checkstr) {
     return 1;
 }
 
-void syncTime() {
+int syncTime() {
+    int ret = 0;
     struct timeval currentTime;
     int hour, min, sec;
     setvbuf(stdout, NULL, _IOLBF, 0);
     tm snapTime;
     getSnapTime(&snapTime);
     const struct timeval tv = {mktime(&snapTime), 0};
-    settimeofday(&tv, 0);
+    ret = settimeofday(&tv, 0);
+    return ret;
 }
 
 void getSnapTime(tm *snapTime) {

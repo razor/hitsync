@@ -14,7 +14,7 @@ typedef struct tm tm;
 
 
 void *updateTimeDisplay();
-void syncTime();
+int syncTime();
 void signalHandle(int);
 void usage();
 void getSnapTime(tm *);
